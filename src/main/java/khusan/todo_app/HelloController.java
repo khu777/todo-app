@@ -19,9 +19,9 @@ public class HelloController {
 
     @GetMapping("/")
     public String openTodoPage(Model model) {
-        // Раньше: return tasks;
-        // Теперь: Иди в базу и принеси всё, что там есть (findAll)
-        List<TodoItem> tasks = repository.findAll();
+        // Тоже убрали And
+        List<TodoItem> tasks = repository.findAllByOrderByIsDoneAscIdDesc();
+
         model.addAttribute("myTasks", tasks);
         return "todo";
     }
